@@ -1,58 +1,43 @@
 import ReactFlow, {
   Controls,
   Background,
-  applyNodeChanges,
-  applyEdgeChanges,
-  addEdge,
+  Node
 } from 'reactflow';
 import {useState, useCallback} from 'react'
 import 'reactflow/dist/style.css';
-
+import {Square} from './Components/Square'
 
 let initialEdges = [{}]
 
 
-const initalNodes = [
-  {
-    id: '1',
-    position: { x: 0, y: 0 },
-    data:{label:"hello"},
-  },
+const NODE_TYPES = {
+  square:Square,
+}
 
 
+const initial_types=[
   {
-    id: '2',
-    position: { x: 100, y: 100 },
-    data:{label:"hello"},
-  },
-];
+    id:'1',
+    type:'square',
+    position:{
+      x:100,
+      y:100
+    },
+
+    data:{}
+    
+  }
+  
+]
+
 
 function App() {
-
-  const [nodes , setNodes] = useState(initalNodes)
-  const [edges , setEdges] = useState(initialEdges) 
-
-  const onNodesChange= useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    []
-  )
-
-  const onEdgesChange = useCallback(
-    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    []
-  );
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
-
-
   return (
     
     <div className="w-screen h-screen">
       <ReactFlow 
-        nodes={nodes}
-        onNodesChange={onNodesChange}
-        edges={edges}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
+        nodeTypes={NODE_TYPES}
+        nodes={initial_types}
       >
         <Background/>
         <Controls />
