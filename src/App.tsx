@@ -1,7 +1,10 @@
 import ReactFlow, {
   Controls,
   Background,
-  Node
+  Node,
+  useNodesState,
+  useEdgesState,
+  applyEdgeChanges
 } from 'reactflow';
 import {useState, useCallback} from 'react'
 import 'reactflow/dist/style.css';
@@ -9,7 +12,6 @@ import {Square} from './Components/Square'
 import {Ellipse} from './Components/Ellipse'
 import {Triangle} from './Components/Triangle'
 
-let initialEdges = [{}]
 
 
 const NODE_TYPES = {
@@ -64,13 +66,25 @@ const initial_types=[
 ]
 
 
+
+
 function App() {
+
+  const [nodes, _ , onNodesChange] = useNodesState(initial_types)
+  const [ edges, setEdges , onEdgeChange] = useEdgesState([])
+
+
+ 
+
+
   return (
     
     <div className="w-screen h-screen">
       <ReactFlow 
         nodeTypes={NODE_TYPES}
-        nodes={initial_types}
+        nodes={nodes}
+        onNodesChange={onNodesChange}
+
       >
         <Background/>
         <Controls />
