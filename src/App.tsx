@@ -7,13 +7,15 @@ import {useState, useCallback} from 'react'
 import 'reactflow/dist/style.css';
 import {Square} from './Components/Square'
 import {Ellipse} from './Components/Ellipse'
+import {Triangle} from './Components/Triangle'
 
 let initialEdges = [{}]
 
 
 const NODE_TYPES = {
   square:Square,
-  ellipse: Ellipse
+  ellipse: Ellipse,
+  triangle:Triangle
 }
 
 
@@ -38,6 +40,19 @@ const initial_types=[
     position:{
       x:400,
       y:400
+    },
+
+   
+
+    data:{}
+    
+  },
+  {
+    id:'3',
+    type:'triangle',
+    position:{
+      x:600,
+      y:600
     },
 
    

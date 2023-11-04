@@ -1,0 +1,33 @@
+.triangle, .triangle:before, .triangle:after { width: 200px; height: 200px; }
+.triangle {
+    overflow: hidden;
+    position: relative;
+    margin: 7em auto 0;
+    border-radius: 20%;
+    transform: translateY(50%) rotate(30deg) skewY(30deg) scaleX(.866);
+    cursor: pointer;
+    pointer-events: none;
+} 
+.triangle:before, .triangle:after {
+    position: absolute;
+    pointer-events: auto;
+    content: '';
+}
+.triangle:before {
+    border-radius: 20% 20% 20% 53%;
+    transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) 
+            skewX(30deg) scaleY(.866) translateX(-24%);
+}
+.triangle:after {
+    border-radius: 20% 20% 53% 20%;
+    transform: scaleX(1.155) skewY(-30deg) rotate(-30deg) translateY(-42.3%) 
+            skewX(-30deg) scaleY(.866) translateX(24%);
+}
+
+/** extra styles to show how it works **/
+
+.triangle:hover { overflow: visible; }
+.triangle:hover:before, .triangle:hover:after { background: none; }
+.triangle:hover, .triangle:hover:before, .triangle:hover:after {
+    border: dashed 1px;
+}
