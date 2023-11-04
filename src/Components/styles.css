@@ -26,8 +26,3 @@
 
 /** extra styles to show how it works **/
 
-.triangle:hover { overflow: visible; }
-.triangle:hover:before, .triangle:hover:after { background: none; }
-.triangle:hover, .triangle:hover:before, .triangle:hover:after {
-    border: dashed 1px;
-}
