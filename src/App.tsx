@@ -1,18 +1,26 @@
 import ReactFlow, {
   Controls,
   Background,
-  Node,
   useNodesState,
   useEdgesState,
-  applyEdgeChanges
+  ConnectionMode,
+  Connection,
+  addEdge,
 } from 'reactflow';
-import {useState, useCallback} from 'react'
+
 import 'reactflow/dist/style.css';
 import {Square} from './Components/Square'
 import {Ellipse} from './Components/Ellipse'
 import {Triangle} from './Components/Triangle'
+import {DefaultEdge} from './Components/DefaultEdge'
 
 
+import {zinc} from 'tailwindcss/colors'
+import { useCallback } from 'react';
+
+const EDGETYPES ={
+  default: DefaultEdge
+}
 
 const NODE_TYPES = {
   square:Square,
@@ -29,11 +37,7 @@ const initial_types=[
       x:100,
       y:100
     },
-
-   
-
     data:{}
-    
   } ,
 
   {
@@ -43,39 +47,22 @@ const initial_types=[
       x:400,
       y:400
     },
-
-   
-
     data:{}
-    
   },
-  {
-    id:'3',
-    type:'triangle',
-    position:{
-      x:600,
-      y:600
-    },
 
-   
-
-    data:{}
-    
-  }
-  
 ]
-
-
-
 
 function App() {
 
   const [nodes, _ , onNodesChange] = useNodesState(initial_types)
   const [ edges, setEdges , onEdgeChange] = useEdgesState([])
 
-
- 
-
+  const onConnect= useCallback(
+    (connection:Connection)=>{
+      return setEdges(edges=> addEdge(connection, edges))
+    },
+    []
+  )
 
   return (
     
@@ -84,10 +71,23 @@ function App() {
         nodeTypes={NODE_TYPES}
         nodes={nodes}
         onNodesChange={onNodesChange}
-
+        connectionMode={ConnectionMode.Loose}
+        edges={edges}
+        onEdgesChange={onEdgeChange}
+        onConnect={onConnect}
+        edgeTypes={EDGETYPES}
+        defaultEdgeOptions={{
+          type:'default'
+        }}
       >
-        <Background/>
-        <Controls />
+        <Background
+          size={2}
+          color={zinc[400]}
+
+        />
+        <Controls 
+        
+        />
       </ReactFlow>    
 
     </div>
