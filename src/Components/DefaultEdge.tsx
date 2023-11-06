@@ -28,8 +28,7 @@ export  function DefaultEdge({
 
   return (
     <>
-      <BaseEdge  path={edgePath} markerEnd={markerEnd} style={{
-        stroke: '20px'
+      <BaseEdge   path={edgePath}  markerEnd={markerEnd} style={{
       }} />
      
     </>

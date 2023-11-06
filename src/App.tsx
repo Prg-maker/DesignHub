@@ -6,9 +6,13 @@ import ReactFlow, {
   ConnectionMode,
   Connection,
   addEdge,
+  MarkerType,
 } from 'reactflow';
 
+import * as ToolBar from '@radix-ui/react-toolbar'
 import 'reactflow/dist/style.css';
+
+
 import {Square} from './Components/Square'
 import {Ellipse} from './Components/Ellipse'
 import {Triangle} from './Components/Triangle'
@@ -19,7 +23,7 @@ import {zinc} from 'tailwindcss/colors'
 import { useCallback } from 'react';
 
 const EDGETYPES ={
-  default: DefaultEdge
+  default: DefaultEdge,
 }
 
 const NODE_TYPES = {
@@ -31,30 +35,22 @@ const NODE_TYPES = {
 
 const initial_types=[
   {
-    id:'1',
+    id:crypto.randomUUID(),
     type:'square',
     position:{
       x:100,
       y:100
     },
-    data:{}
+    data:{
+    }
   } ,
-
-  {
-    id:'2',
-    type:'ellipse',
-    position:{
-      x:400,
-      y:400
-    },
-    data:{}
-  },
+ 
 
 ]
 
 function App() {
 
-  const [nodes, _ , onNodesChange] = useNodesState(initial_types)
+  const [nodes, setNodes , onNodesChange] = useNodesState(initial_types)
   const [ edges, setEdges , onEdgeChange] = useEdgesState([])
 
   const onConnect= useCallback(
@@ -63,6 +59,41 @@ function App() {
     },
     []
   )
+
+
+  function addSquareNode() {
+    setNodes(nodes=> [
+      ...nodes,
+      {
+        id:crypto.randomUUID(),
+        type:'square',
+        position:{
+          x:400,
+          y:400
+        },
+        data:{}
+      }
+    ])
+
+  }
+
+  function addEllipseNode() {
+    setNodes(nodes=> [
+      ...nodes,
+      {
+        id:crypto.randomUUID(),
+        type:'ellipse',
+        position:{
+          x:400,
+          y:400
+        },
+        data:{}
+      }
+    ])
+
+  }
+
+  
 
   return (
     
@@ -89,6 +120,33 @@ function App() {
         
         />
       </ReactFlow>    
+
+      <ToolBar.Root className='fixed grid grid-cols-4 bottom-10 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg  border border-zinc-300 px-8 h-20 w-96 '>
+        <div className='hover:bg-zinc-100  '>
+        <ToolBar.ToggleGroup type="multiple" className=' h-full hover:-translate-y-2 transition-transform flex  justify-center gap-2 '>
+
+          <ToolBar.ToggleItem value=''>
+            <ToolBar.Button 
+              onClick={addEllipseNode}
+              className='w-[35px] h-[35px] bg-violet-500 rounded-[100%] hover:w-[40px] hover:h-[40px] transition-transform '
+              
+            />
+          </ToolBar.ToggleItem>
+
+          <ToolBar.ToggleItem value='' name='square'>
+            <ToolBar.Button
+              onClick={addSquareNode}
+              className='w-[35px] h-[35px] bg-violet-500 hover:w-[40px] hover:h-[40px] transition-transform'
+            />
+          </ToolBar.ToggleItem>
+
+        </ToolBar.ToggleGroup>
+
+        </div>
+      
+     
+
+      </ToolBar.Root>
 
     </div>
   )
