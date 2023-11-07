@@ -121,9 +121,9 @@ function App() {
         />
       </ReactFlow>    
 
-      <ToolBar.Root className='fixed grid grid-cols-4 bottom-10 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg  border border-zinc-300 px-8 h-20 w-96 '>
+      <ToolBar.Root className='fixed grid grid-cols-3 bottom-10 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-lg  border border-zinc-300 px-8 h-20 w-96 gap-2 '>
         <div className='hover:bg-zinc-100  '>
-        <ToolBar.ToggleGroup type="multiple" className=' h-full hover:-translate-y-2 transition-transform flex  justify-center gap-2 '>
+        <ToolBar.ToggleGroup type="multiple" className='h-full hover:-translate-y-2 transition-transform flex  justify-center gap-2 '>
 
           <ToolBar.ToggleItem value=''>
             <ToolBar.Button 
@@ -143,8 +143,6 @@ function App() {
         </ToolBar.ToggleGroup>
 
         </div>
-      
-     
 
       </ToolBar.Root>
 
