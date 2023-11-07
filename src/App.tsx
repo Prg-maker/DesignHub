@@ -7,6 +7,7 @@ import ReactFlow, {
   Connection,
   addEdge,
   MarkerType,
+  Edge
 } from 'reactflow';
 
 import * as ToolBar from '@radix-ui/react-toolbar'
@@ -24,8 +25,8 @@ import { useCallback } from 'react';
 
 const EDGETYPES ={
   default: DefaultEdge,
+  
 }
-
 const NODE_TYPES = {
   square:Square,
   ellipse: Ellipse,
@@ -48,11 +49,14 @@ const initial_types=[
 
 ]
 
+
 function App() {
 
   const [nodes, setNodes , onNodesChange] = useNodesState(initial_types)
   const [ edges, setEdges , onEdgeChange] = useEdgesState([])
 
+
+  const label="aqui esta"
   const onConnect= useCallback(
     (connection:Connection)=>{
       return setEdges(edges=> addEdge(connection, edges))
@@ -107,6 +111,7 @@ function App() {
         onEdgesChange={onEdgeChange}
         onConnect={onConnect}
         edgeTypes={EDGETYPES}
+
         defaultEdgeOptions={{
           type:'default'
         }}
