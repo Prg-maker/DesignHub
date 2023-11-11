@@ -14,7 +14,8 @@ export  function DefaultEdge({
   targetPosition,
   style = {},
   markerEnd,
-  
+  data,
+  label
 }: EdgeProps) {
   const [edgePath, labelX, labelY] = getSmoothStepPath({
     sourceX,
@@ -25,19 +26,20 @@ export  function DefaultEdge({
     targetPosition,
   });
 
-  const label = 'Exemplo de label'
-  function teste(){
+  function onClick(){
+    console.log(label="aqiu")
+    console.log('chegou aui')
+
   }
-  
+
 
   return (
     <>
-      <BaseEdge   path={edgePath}  markerEnd={markerEnd} style={{
+      <BaseEdge  id={id} path={edgePath}  markerEnd={markerEnd} style={{
       }} />
 
       <EdgeLabelRenderer >
         <div
-          onDoubleClick={teste}
           style={{
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
             pointerEvents: 'all',
@@ -50,9 +52,9 @@ export  function DefaultEdge({
               <p className='text-white text-sm  flex-wrap' >{label}</p>
             </div>:  
             
-          <button className=" bg-zinc-300 rounded-full px-[2px] py-[2px] hover:bg-zinc-200 transition-transform" >
-              <PlusIcon height={12} width={12} className=""/>
-          </button>
+            <button onClick={onClick} className=" bg-zinc-300 rounded-full px-[2px] py-[2px] hover:bg-zinc-200 transition-transform flex justify-center items-center" >
+                <PlusIcon height={12} width={12} className=""/>
+            </button>
           }
         </div>
       </EdgeLabelRenderer>

@@ -35,35 +35,21 @@ const NODE_TYPES = {
 }
 
 
-const initial_types=[
-  {
-    id:crypto.randomUUID(),
-    type:'square',
-    position:{
-      x:100,
-      y:100
-    },
-    data:{
-    }
-  } ,
- 
-
-]
 
 
 export function App() {
 
-  const [nodes, setNodes , onNodesChange] = useNodesState(initial_types)
+  const [nodes, setNodes , onNodesChange] = useNodesState([])
   const [ edges, setEdges , onEdgeChange] = useEdgesState([])
 
-
-  const label="aqui esta"
   const onConnect= useCallback(
     (connection:Connection)=>{
       return setEdges(edges=> addEdge(connection, edges))
     },
     []
   )
+
+ 
 
 
   function addSquareNode() {
@@ -76,7 +62,9 @@ export function App() {
           x:400,
           y:400
         },
-        data:{}
+        data:{
+        },
+        label:''
       }
     ])
 
@@ -92,7 +80,9 @@ export function App() {
           x:400,
           y:400
         },
-        data:{}
+        data:{
+          label:'aqio'
+        }
       }
     ])
 
