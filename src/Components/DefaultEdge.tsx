@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, getSmoothStepPath } from 'reactflow';
 import {PlusIcon} from '@radix-ui/react-icons'
 
@@ -15,7 +15,6 @@ export  function DefaultEdge({
   style = {},
   markerEnd,
   data,
-  label
 }: EdgeProps) {
   const [edgePath, labelX, labelY] = getSmoothStepPath({
     sourceX,
@@ -26,10 +25,10 @@ export  function DefaultEdge({
     targetPosition,
   });
 
-  function onClick(){
-    console.log(label="aqiu")
-    console.log('chegou aui')
+  const [label, setLabel] = useState(false)
 
+  function addLabel(){
+    setLabel(!label)
   }
 
 
@@ -48,11 +47,12 @@ export  function DefaultEdge({
         >
           {
             label? 
-            <div className='w-[150px] h-[50px] bg-violet-400 flex items-center justify-center rounded  '>
-              <p className='text-white text-sm  flex-wrap' >{label}</p>
+            <div className='w-[150px] h-[50px] bg-violet-400 flex items-center justify-center rounded  pt-2'>
+                  <textarea autoCorrect='off' maxLength={16} className=' h-[60px] bg-transparent resize-none text-center leading rounded py-4 text-white border-0 outline-none  placeholder:text-gray-300 placeholder-opacity-80 overflow-hidden nodrag text-sm' placeholder='Add label' />
+
             </div>:  
             
-            <button onClick={onClick} className=" bg-zinc-300 rounded-full px-[2px] py-[2px] hover:bg-zinc-200 transition-transform flex justify-center items-center" >
+            <button onClick={addLabel} className=" bg-zinc-300 rounded-full px-[2px] py-[2px] hover:bg-zinc-200 transition-transform flex justify-center items-center" >
                 <PlusIcon height={12} width={12} className=""/>
             </button>
           }

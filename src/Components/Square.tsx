@@ -4,6 +4,14 @@ export function Square(props: NodeProps) {
 
   return (
     <div className='bg-violet-500   rounded w-[200px] h-[150px] flex items-center px-2'>
+
+
+      <Handle 
+          id="top" 
+          type='source' 
+          position={Position.Top} 
+          className=" w-[9px] h-[9px] border-2  bg-blue-400/80"
+      />
       <Handle 
         id="left" 
         type='source' 
@@ -15,6 +23,14 @@ export function Square(props: NodeProps) {
         id="right" 
         type='source' 
         position={Position.Right} 
+        className=" w-[9px] h-[9px] border-2  bg-blue-400/80"
+      />
+
+
+      <Handle 
+        id="bottom" 
+        type='source' 
+        position={Position.Bottom} 
         className=" w-[9px] h-[9px] border-2  bg-blue-400/80"
       />
 
