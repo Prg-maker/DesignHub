@@ -51,7 +51,7 @@ const initial_types=[
 ]
 
 
-function App() {
+export function App() {
 
   const [nodes, setNodes , onNodesChange] = useNodesState(initial_types)
   const [ edges, setEdges , onEdgeChange] = useEdgesState([])
@@ -159,4 +159,3 @@ function App() {
   )
 }
 
-export default App
