@@ -4,9 +4,8 @@ import {toPng} from 'html-to-image'
 
 
 
-export function ButtonDownloadPNG(nodes){
+export function ButtonDownloadPNG(){
 
-  console.log(nodes)
 
   function downloadImage(dataUrl:string){
     const a = document.createElement('a')
@@ -21,16 +20,13 @@ export function ButtonDownloadPNG(nodes){
 
   function DownloadButton(){
 
-    const data = document.querySelector('.react-flow__viewport')
+    const data = document.querySelector('.react-flow__viewport') as HTMLElement;
 
     toPng(data, {
       backgroundColor: '#fff',
       width: imageWidth,
       height: imageHeight,
-      style: {
-        width: imageWidth,
-        height: imageHeight,
-      },
+     
     }).then(downloadImage)
   }
   
