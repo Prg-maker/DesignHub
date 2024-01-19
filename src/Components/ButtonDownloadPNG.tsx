@@ -1,15 +1,17 @@
 import {Panel , useReactFlow,getRectOfNodes, getTransformForBounds, Node} from 'reactflow'
 import {toPng} from 'html-to-image'
 
+interface ButtonDownloadPNGProps{
+  title:string
+}
 
 
-
-export function ButtonDownloadPNG(){
+export function ButtonDownloadPNG({title}:ButtonDownloadPNGProps){
 
 
   function downloadImage(dataUrl:string){
     const a = document.createElement('a')
-    a.setAttribute('download' , 'reactflow.png'),
+    a.setAttribute('download' , `${title}.png`),
     a.setAttribute('href', dataUrl)
 
     a.click()
@@ -32,7 +34,7 @@ export function ButtonDownloadPNG(){
   
 
   return (
-    <button className=" bg-red-100" onClick={DownloadButton}>
+    <button className=" bg-blue-400 px-3 py-2 rounded text-white font-sm " onClick={DownloadButton}>
       Baixar
     </button>
   )
