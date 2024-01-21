@@ -13,7 +13,6 @@ import ReactFlow, {
 import {ButtonDownloadPNG} from './Components/ButtonDownloadPNG'
 import * as ToolBar from '@radix-ui/react-toolbar'
 import 'reactflow/dist/style.css';
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import {Square} from './Components/Square'
 import {Ellipse} from './Components/Ellipse'
@@ -93,7 +92,6 @@ export function App() {
     
     <div className="w-screen h-screen overflow-hidden  ">
 
-    <SpeedInsights />
       <div className='h-12 border-b border-solid border-b-[#D9D9D9]   z-10 grid grid-cols-3 grid-rows-1'>
         <div> </div>
 
